@@ -41,7 +41,7 @@ class Admin_model extends CI_Model
 	public function userPrivilege($redirect = 'admin', $isi2 = '')
 	{
 		$dataUser = $this->getDataUserAdmin();
-		if ($dataUser['jabatan'] != 'Administrator') {
+		/*if ($dataUser['jabatan'] != 'Administrator') {
 			$isi = 'Akses ditolak! Karena jabatan anda sebagai ' . $dataUser['jabatan'] . '! Hubungi Administrator untuk melakukan perubahan ';
 			$isi .= ucfirst($isi2);
 
@@ -51,7 +51,7 @@ class Admin_model extends CI_Model
 			$this->lomo->addLog($isi, $id_user);
 			redirect($redirect);
 			exit();
-		}
+		}*/
 	}
 
 	public function changePassword()
