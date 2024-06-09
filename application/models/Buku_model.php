@@ -75,7 +75,7 @@ class Buku_model extends CI_Model
 		$judul_buku = $data_buku['judul_buku'];
 
 		if (!$this->db->delete('buku', ['id_buku' => $id_buku])) {
-		    $isi_log = 'Buku ' . $judul_buku . ' gagal dihapus.';
+		    $isi_log = 'Buku ' . $judul_buku . ' gagal dihapus';
 		    $this->lomo->addLog($isi_log, $dataUser['id_user']);
 		    $this->session->set_flashdata('message-failed', $isi_log);
 		} else {

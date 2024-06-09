@@ -74,7 +74,7 @@ class User_model extends CI_Model
 		$username  = $data_user['username'];
 
 		if (!$this->db->delete('user', ['id_user' => $id_user])) {
-		    $isi_log = 'Pengguna ' . $username . ' gagal dihapus.';
+		    $isi_log = 'Pengguna ' . $username . ' gagal dihapus';
 			$this->lomo->addLog($isi_log, $dataUser['id_user']);
 			$this->session->set_flashdata('message-failed', $isi_log);
 		} else {

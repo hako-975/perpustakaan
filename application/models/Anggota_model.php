@@ -73,7 +73,7 @@ class Anggota_model extends CI_Model
 		$nama_anggota = $data_anggota['nama_anggota'];
 
 		if (!$this->db->delete('anggota', ['id_anggota' => $id_anggota])) {
-		    $isi_log = 'Anggota ' . $nama_anggota . ' gagal dihapus.';
+		    $isi_log = 'Anggota ' . $nama_anggota . ' gagal dihapus';
 		    $this->lomo->addLog($isi_log, $dataUser['id_user']);
 		    $this->session->set_flashdata('message-failed', $isi_log);
 		} else {
