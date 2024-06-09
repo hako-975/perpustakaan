@@ -91,10 +91,10 @@
 											<?php if ($dt['tanggal_kembali'] != null): ?>
 												<td class="align-middle"><?= date('d-m-Y, H:i', strtotime($dt['tanggal_kembali'])); ?></td>
 											<?php else: ?>
-												<td>-</td>
+												<td class="align-middle">-</td>
 											<?php endif ?>
 											<td class="align-middle"><?= ucwords($dt['status']); ?></td>
-											<td class="align-middle"><?= ucwords($dt['denda']); ?></td>
+											<td class="align-middle">Rp. <?= number_format($dt['denda']); ?></td>
 										</tr>
 									<?php endforeach ?>
 								</tbody>

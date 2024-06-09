@@ -24,9 +24,6 @@
 						<input type="password" id="password" class="form-control" name="password" required>
 					</div>
 					<div class="form-group row">
-						<div class="col my-auto">
-							<a href="<?= base_url('auth/lupaPassword'); ?>">Lupa Password?</a>
-						</div>
 						<div class="col my-auto text-right">
 							<button type="submit" class="btn btn-primary"><i class="fas fa-fw fa-sign-in-alt"></i> Login</button>
 						</div>

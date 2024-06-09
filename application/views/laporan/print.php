@@ -27,9 +27,10 @@
         th, td {
             page-break-inside: avoid;
             page-break-after: auto;
-            border: 1px solid #ccc;
+            border: 1px solid black;
             padding: 8px 12px;
             text-align: left;
+            color: black;
         }
         
         .row {
@@ -63,7 +64,7 @@
             <?php $i = 1; ?>
             <?php foreach ($transaksi as $dt): ?>
                 <tr>
-                    <td><?= $i++; ?></td>
+                    <td><?= $i++; ?>.</td>
                     <td><?= $dt['nama_anggota']; ?></td>
                     <td><?= $dt['judul_buku']; ?></td>
                     <td><?= date('d-m-Y, H:i', strtotime($dt['tanggal_pinjam'])); ?></td>
@@ -71,10 +72,10 @@
                     <?php if ($dt['tanggal_kembali'] != null): ?>
                         <td><?= date('d-m-Y, H:i', strtotime($dt['tanggal_kembali'])); ?></td>
                     <?php else: ?>
-                        <td>-</td>
+                        <td class="align-middle">-</td>
                     <?php endif ?>
                     <td><?= ucwords($dt['status']); ?></td>
-                    <td><?= ucwords($dt['denda']); ?></td>
+                    <td>Rp. <?= number_format($dt['denda']); ?></td>
                 </tr>
             <?php endforeach ?>
         </tbody>

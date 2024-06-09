@@ -49,7 +49,7 @@
 							    $denda = $selisih * 500;
 								}
 							?>
-							<input type="number" disabled class="form-control" value="<?= $denda; ?>">
+							<input type="text" disabled class="form-control" value="Rp. <?= number_format($denda); ?>">
 							<input type="hidden" name="denda" value="<?= $denda; ?>">
 						</div>
 						<div class="form-group text-right">

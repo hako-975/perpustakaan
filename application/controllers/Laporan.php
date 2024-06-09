@@ -14,11 +14,11 @@ class Laporan extends CI_Controller
 	public function index()
 	{
 		$data['dataUser']	= $this->admo->getDataUserAdmin();
-		$data['title']  	= 'Laporan';
 
 		$dari_tanggal 		= $this->input->get('dari_tanggal');
 		$sampai_tanggal		= $this->input->get('sampai_tanggal');
 		$status				= $this->input->get('status');
+		$data['title']  	= 'Laporan dari ' . date('d/m/Y', strtotime($dari_tanggal)) . ' - sampai ' . date('d/m/Y', strtotime($sampai_tanggal)) . ' - status: ' . ucwords($status);
 		$data['transaksi']	= $this->lamo->getLaporanFilter($dari_tanggal, $sampai_tanggal, $status);
 		$this->load->view('templates/header-admin', $data);
 		$this->load->view('laporan/index', $data);
@@ -33,7 +33,7 @@ class Laporan extends CI_Controller
 		$sampai_tanggal		= $this->input->get('sampai_tanggal');
 		$status				= $this->input->get('status');
 
-		$data['title']  	= 'Laporan dari ' . date('d-m-Y', strtotime($dari_tanggal)) . ' - sampai ' . date('d-m-Y', strtotime($sampai_tanggal)) . ' - status: ' . ucwords($status);
+		$data['title']  	= 'Laporan dari ' . date('d/m/Y', strtotime($dari_tanggal)) . ' - sampai ' . date('d/m/Y', strtotime($sampai_tanggal)) . ' - status: ' . ucwords($status);
 		$data['transaksi']	= $this->lamo->getLaporanFilter($dari_tanggal, $sampai_tanggal, $status);
 		$this->load->view('laporan/print', $data);
 	}
