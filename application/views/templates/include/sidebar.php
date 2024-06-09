@@ -40,7 +40,13 @@
         <!-- manajemen data -->
         <?php if (
           $_SERVER['REQUEST_URI'] == '/perpustakaan/user' || 
-          $_SERVER['REQUEST_URI'] == '/perpustakaan/user/'
+          $_SERVER['REQUEST_URI'] == '/perpustakaan/user/' ||
+          $_SERVER['REQUEST_URI'] == '/perpustakaan/anggota' || 
+          $_SERVER['REQUEST_URI'] == '/perpustakaan/anggota/' ||
+          $_SERVER['REQUEST_URI'] == '/perpustakaan/buku' || 
+          $_SERVER['REQUEST_URI'] == '/perpustakaan/buku/' ||
+          $_SERVER['REQUEST_URI'] == '/perpustakaan/transaksi' || 
+          $_SERVER['REQUEST_URI'] == '/perpustakaan/transaksi/' 
         ): ?>
           <li class="nav-item menu-open">
           <a href="#" class="nav-link active">
