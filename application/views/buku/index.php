@@ -5,7 +5,7 @@
 				<div class="card-header">
 					<div class="row justify-content-center">
 						<div class="col-lg header-title">
-							<h3 class="m-0"><i class="fas fa-fw fa-users"></i> Buku</h3>
+							<h3 class="m-0"><i class="fas fa-fw fa-book"></i> Buku</h3>
 						</div>
 						<div class="col-lg-4 header-button">
 							<a href="<?= base_url('buku/addBuku'); ?>" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> Tambah Buku</a>
@@ -22,6 +22,7 @@
 									<th class="align-middle">Tahun Buku</th>
 									<th class="align-middle">Penerbit Buku</th>
 									<th class="align-middle">Penulis Buku</th>
+									<th class="align-middle">Stok Buku</th>
 									<th class="align-middle">Aksi</th>
 								</tr>
 							</thead>
@@ -34,6 +35,7 @@
 										<td class="align-middle"><?= $db['tahun_buku']; ?></td>
 										<td class="align-middle"><?= $db['penerbit_buku']; ?></td>
 										<td class="align-middle"><?= $db['penulis_buku']; ?></td>
+										<td class="align-middle"><?= $db['stok_buku']; ?></td>
 										<td class="align-middle text-center">
 											<a href="<?= base_url('buku/editBuku/' . $db['id_buku']); ?>" class="btn btn-sm btn-success m-1"><i class="fas fa-fw fa-edit"></i></a>
 											<a href="<?= base_url('buku/removeBuku/' . $db['id_buku']); ?>" class="btn btn-sm btn-danger m-1 btn-delete" data-nama="<?= $db['judul_buku']; ?>"><i class="fas fa-fw fa-fw fa-trash"></i></a>

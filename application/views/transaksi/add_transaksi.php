@@ -17,7 +17,7 @@
 		<div class="col-lg-6">
 			<div class="card">
 			  <div class="card-header">
-			  	<h3 class="m-0"><i class="fas fa-fw fa-plus"></i> Tambah Transaksi</h3>
+			  	<h3 class="m-0"><i class="fas fa-fw fa-plus"></i> Tambah Peminjaman Buku</h3>
 			  </div>
 			  <div class="card-body">
 			  	<form action="<?= base_url('transaksi/addTransaksi'); ?>" method="post">

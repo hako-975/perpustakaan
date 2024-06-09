@@ -30,6 +30,7 @@ class Buku extends CI_Controller
 		$this->form_validation->set_rules('tahun_buku', 'Tahun Buku', 'required|trim');
 		$this->form_validation->set_rules('penerbit_buku', 'Penerbit Buku', 'required|trim');
 		$this->form_validation->set_rules('penulis_buku', 'Penulis Buku', 'required|trim');
+		$this->form_validation->set_rules('stok_buku', 'Stok Buku', 'required|trim');
 		if ($this->form_validation->run() == false) {
 		    $this->load->view('templates/header-admin', $data);
 		    $this->load->view('buku/add_buku', $data);
@@ -58,6 +59,7 @@ class Buku extends CI_Controller
 		$this->form_validation->set_rules('tahun_buku', 'Tahun Buku', 'required|trim');
 		$this->form_validation->set_rules('penerbit_buku', 'Penerbit Buku', 'required|trim');
 		$this->form_validation->set_rules('penulis_buku', 'Penulis Buku', 'required|trim');
+		$this->form_validation->set_rules('stok_buku', 'Stok Buku', 'required|trim');
 		if ($this->form_validation->run() == false) {
 		    $this->load->view('templates/header-admin', $data);
 		    $this->load->view('buku/edit_buku', $data);

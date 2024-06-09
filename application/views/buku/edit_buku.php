@@ -49,6 +49,13 @@
 	              <?= form_error('penulis_buku'); ?>
 	            </div>
 						</div>
+						<div class="form-group">
+							<label for="stok_buku">Stok Buku</label>
+							<input type="number" id="stok_buku" class="form-control <?= (form_error('stok_buku')) ? 'is-invalid' : ''; ?>" name="stok_buku" required value="<?= (form_error('stok_buku')) ? set_value('stok_buku') : $buku['stok_buku']; ?>">
+							<div class="invalid-feedback">
+	              <?= form_error('stok_buku'); ?>
+	            </div>
+						</div>
 						<div class="form-group text-right">
 							<a href="javascript:history.back()" class="btn btn-danger btn-cancel" data-nama="Ubah Buku"><i class="fas fa-fw fa-times"></i> Batal</a>
 							<button type="submit" class="btn btn-primary"><i class="fas fa-fw fa-save"></i> Simpan</button>

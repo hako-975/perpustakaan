@@ -49,16 +49,16 @@
           $_SERVER['REQUEST_URI'] == '/perpustakaan/transaksi/' 
         ): ?>
           <li class="nav-item menu-open">
-          <a href="#" class="nav-link active">
-            <i class="fas fa-align-justify nav-icon"></i>
-            <p>Manajemen Data <i class="right fas fa-angle-left"></i></p>
-          </a>
+            <a href="#" class="nav-link active">
+              <i class="fas fa-align-justify nav-icon"></i>
+              <p>Manajemen Data <i class="right fas fa-angle-left"></i></p>
+            </a>
         <?php else: ?>
           <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="fas fa-align-justify nav-icon"></i>
-            <p>Manajemen Data <i class="right fas fa-angle-left"></i></p>
-          </a>
+            <a href="#" class="nav-link">
+              <i class="fas fa-align-justify nav-icon"></i>
+              <p>Manajemen Data <i class="right fas fa-angle-left"></i></p>
+            </a>
         <?php endif ?>
           <ul class="nav nav-treeview">
             <li class="nav-item ml-3">
@@ -113,6 +113,22 @@
         </li>
         <!-- manajemen data -->
 
+        <li class="nav-item">
+          <?php if (
+            $_SERVER['REQUEST_URI'] == '/perpustakaan/laporan' || 
+            $_SERVER['REQUEST_URI'] == '/perpustakaan/laporan/'
+          ): ?>
+            <a href="<?= base_url('laporan'); ?>" class="nav-link active">
+              <i class="fas fa-file-alt nav-icon"></i>
+              <p>Laporan</p>
+            </a>
+          <?php else: ?>
+            <a href="<?= base_url('laporan'); ?>" class="nav-link">
+              <i class="fas fa-file-alt nav-icon"></i>
+              <p>Laporan</p>
+            </a>
+          <?php endif ?>
+        </li>
         <div class="dropdown-divider"></div>
         <li class="nav-item">
           <?php if (

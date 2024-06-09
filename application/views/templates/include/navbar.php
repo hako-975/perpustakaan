@@ -8,7 +8,7 @@
   </ul>
 
   <!-- SEARCH FORM -->
-  <form class="w-100 form-inline ml-3" method="get" action="<?= base_url('laporan/search'); ?>">
+  <form class="w-100 form-inline ml-3" method="get" action="<?= base_url('transaksi/search'); ?>">
     <div class="w-100 input-group input-group-sm">
       <input name="search" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search" value="<?php echo isset($search) ? $search : ''; ?>">
       <div class="input-group-append">

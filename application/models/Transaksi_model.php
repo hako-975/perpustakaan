@@ -9,6 +9,7 @@ class Transaksi_model extends CI_Model
 		$this->load->model('Admin_model', 'admo');
 		$this->load->model('Log_model', 'lomo');
 		$this->load->model('Anggota_model', 'anmo');
+		$this->load->model('Buku_model', 'bumo');
 	}
 
 	public function getTransaksi()
@@ -25,6 +26,21 @@ class Transaksi_model extends CI_Model
 		$this->db->join('buku', 'transaksi.id_buku=buku.id_buku');
 		return $this->db->get_where('transaksi', ['id_transaksi' => $id_transaksi])->row_array();	
 	}
+
+	public function getTransaksiByKeyword($keyword)
+	{
+		$this->db->join('anggota', 'transaksi.id_anggota=anggota.id_anggota');
+		$this->db->join('buku', 'transaksi.id_buku=buku.id_buku');
+		$this->db->like('anggota.nama_anggota', $keyword);
+	    $this->db->or_like('buku.judul_buku', $keyword);
+	    $this->db->or_like('transaksi.tanggal_pinjam', $keyword);
+	    $this->db->or_like('transaksi.tanggal_wajib_kembali', $keyword);
+	    $this->db->or_like('transaksi.tanggal_kembali', $keyword);
+	    $this->db->or_like('transaksi.status', $keyword);
+	    $this->db->or_like('transaksi.denda', $keyword);
+		return $this->db->get('transaksi')->result_array();	
+	}
+
 
 	public function addTransaksi()
 	{
@@ -54,16 +70,28 @@ class Transaksi_model extends CI_Model
 			";
 	        exit;
 	    }
+		
+		$data_buku = $this->bumo->getBukuById($id_buku);
+		if ($data_buku['stok_buku'] <= 0) {
+			$this->session->set_flashdata('message-failed', 'Stok buku habis');
+	        echo "
+				<script>
+					window.history.back();
+				</script>
+			";
+	        exit;
+		}
 
 		$current_date = date('Y-m-d H:i:s');
 		$data = [
 			'id_anggota' => ucwords(htmlspecialchars($this->input->post('id_anggota', true))),
 			'id_buku' => ucwords(htmlspecialchars($this->input->post('id_buku', true))),
-			'tanggal_kembali' => date('Y-m-d H:i:s', strtotime($current_date . ' + 3 days')),
+			'tanggal_wajib_kembali' => date('Y-m-d H:i:s', strtotime($current_date . ' + 3 days')),
 			'denda' => 0,
 			'status' => 'dipinjam'
 		];
 
+		$this->db->set('stok_buku', 'stok_buku - 1', FALSE)->where('id_buku', $id_buku)->update('buku');
 		$this->db->insert('transaksi', $data);
 
 		$isi_log = 'Transaksi Peminjaman Buku ' . $this->anmo->getAnggotaById($data['id_anggota'])['nama_anggota'] . ' berhasil ditambahkan';
@@ -82,20 +110,22 @@ class Transaksi_model extends CI_Model
 		$nama_anggota  = $data_transaksi['nama_anggota'];
 		
 		$tanggal_sekarang = strtotime(date('Y-m-d H:i:s'));
-		$tanggal_kembali = strtotime($data_transaksi['tanggal_kembali']);
+		$tanggal_wajib_kembali = strtotime($data_transaksi['tanggal_wajib_kembali']);
 		$denda = 0;
-		if ($tanggal_sekarang <= $tanggal_kembali) {
+		if ($tanggal_sekarang <= $tanggal_wajib_kembali) {
 	    	$denda = 0;
 		} else {
-		    $selisih = floor(($tanggal_sekarang - $tanggal_kembali) / (60 * 60 * 24));
+		    $selisih = floor(($tanggal_sekarang - $tanggal_wajib_kembali) / (60 * 60 * 24));
 		    $denda = $selisih * 500;
 		}
-
 		$data = [
+			'tanggal_kembali' => date('Y-m-d H:i:s'),
 			'denda' => $denda,
 			'status' => 'dikembalikan'
 		];
 
+		$id_buku = $data_transaksi['id_buku'];
+		$this->db->set('stok_buku', 'stok_buku + 1', FALSE)->where('id_buku', $id_buku)->update('buku');
 		$this->db->update('transaksi', $data, ['id_transaksi' => $id_transaksi]);
 
 		$isi_log = 'Transaksi Pengembalian Buku ' . $nama_anggota . ' berhasil';
@@ -112,7 +142,7 @@ class Transaksi_model extends CI_Model
 
 		$data_transaksi = $this->getTransaksiById($id_transaksi);
 		$nama_anggota = $data_transaksi['nama_anggota'];
-
+		$status = $data_transaksi['status'];
 		if (!$this->db->delete('transaksi', ['id_transaksi' => $id_transaksi])) {
 		    $isi_log = 'Transaksi ' . $nama_anggota . ' gagal dihapus';
 		    $this->lomo->addLog($isi_log, $dataUser['id_user']);
@@ -121,6 +151,10 @@ class Transaksi_model extends CI_Model
 		    $isi_log = 'Transaksi ' . $nama_anggota . ' berhasil dihapus';
 		    $this->lomo->addLog($isi_log, $dataUser['id_user']);
 		    $this->session->set_flashdata('message-success', $isi_log);
+		    if ($status == 'dipinjam') {
+		    	$id_buku = $data_transaksi['id_buku'];
+				$this->db->set('stok_buku', 'stok_buku + 1', FALSE)->where('id_buku', $id_buku)->update('buku');
+		    }
 		}
 
 		redirect('transaksi'); 

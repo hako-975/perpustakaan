@@ -17,7 +17,7 @@
 		<div class="col-lg-6">
 			<div class="card">
 				<div class="card-header">
-					<h3 class="m-0"><i class="fas fa-fw fa-edit"></i> Transaksi Pengembalian Buku</h3>
+					<h3 class="m-0"><i class="fas fa-fw fa-undo"></i> Transaksi Pengembalian Buku</h3>
 				</div>
 			  	<div class="card-body">
 					<form action="<?= base_url('transaksi/editTransaksi/' . $transaksi['id_transaksi']); ?>" method="post">
@@ -34,18 +34,18 @@
 							<input type="text" disabled class="form-control" value="<?= date('d-m-Y, H:i', strtotime($transaksi['tanggal_pinjam'])); ?>">
 						</div>
 						<div class="form-group">
-							<label for="tanggal_kembali">Tanggal Kembali</label>
-							<input type="text" disabled class="form-control" value="<?= date('d-m-Y, H:i', strtotime($transaksi['tanggal_kembali'])); ?>">
+							<label for="tanggal_wajib_kembali">Tanggal Wajib Kembali</label>
+							<input type="text" disabled class="form-control" value="<?= date('d-m-Y, H:i', strtotime($transaksi['tanggal_wajib_kembali'])); ?>">
 						</div>
 						<div class="form-group">
 							<label for="denda">Denda</label>
 							<?php 
 								$tanggal_sekarang = strtotime(date('Y-m-d H:i:s'));
-								$tanggal_kembali = strtotime($transaksi['tanggal_kembali']);
-								if ($tanggal_sekarang <= $tanggal_kembali) {
+								$tanggal_wajib_kembali = strtotime($transaksi['tanggal_wajib_kembali']);
+								if ($tanggal_sekarang <= $tanggal_wajib_kembali) {
 							    $denda = 0;
 								} else {
-							    $selisih = floor(($tanggal_sekarang - $tanggal_kembali) / (60 * 60 * 24));
+							    $selisih = floor(($tanggal_sekarang - $tanggal_wajib_kembali) / (60 * 60 * 24));
 							    $denda = $selisih * 500;
 								}
 							?>

@@ -31,7 +31,8 @@ class Buku_model extends CI_Model
 			'judul_buku' => ucwords(htmlspecialchars($this->input->post('judul_buku', true))),
 			'tahun_buku' => ucwords(htmlspecialchars($this->input->post('tahun_buku', true))),
 			'penerbit_buku' => ucwords(htmlspecialchars($this->input->post('penerbit_buku', true))),
-			'penulis_buku' => ucwords(htmlspecialchars($this->input->post('penulis_buku', true)))
+			'penulis_buku' => ucwords(htmlspecialchars($this->input->post('penulis_buku', true))),
+			'stok_buku' => htmlspecialchars($this->input->post('stok_buku', true))
 		];
 
 		$this->db->insert('buku', $data);
@@ -54,7 +55,8 @@ class Buku_model extends CI_Model
 			'judul_buku' => ucwords(strtolower(htmlspecialchars($this->input->post('judul_buku', true)))),
 			'tahun_buku' => ucwords(htmlspecialchars($this->input->post('tahun_buku', true))),
 			'penerbit_buku' => ucwords(htmlspecialchars($this->input->post('penerbit_buku', true))),
-			'penulis_buku' => ucwords(htmlspecialchars($this->input->post('penulis_buku', true)))
+			'penulis_buku' => ucwords(htmlspecialchars($this->input->post('penulis_buku', true))),
+			'stok_buku' => htmlspecialchars($this->input->post('stok_buku', true))
 		];
 
 		$this->db->update('buku', $data, ['id_buku' => $id_buku]);

@@ -23,6 +23,21 @@ class Transaksi extends CI_Controller
 		$this->load->view('templates/footer-admin', $data);
 	}
 
+	public function search()
+	{
+		$search = $this->input->get('search');
+
+		$data['dataUser']	= $this->admo->getDataUserAdmin();
+		$data['search'] 	= $search;
+		$data['transaksi']	= $this->tramo->getTransaksi();
+		$data['transaksi']	= $this->tramo->getTransaksiByKeyword($search);
+		$data['title']  	= 'Transaksi - ' . $search;
+		
+		$this->load->view('templates/header-admin', $data);
+		$this->load->view('transaksi/index', $data);
+		$this->load->view('templates/footer-admin', $data);
+	}
+
 	public function addTransaksi()
 	{
 		$data['anggota']	= $this->anmo->getAnggota();
