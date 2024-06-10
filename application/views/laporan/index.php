@@ -80,8 +80,12 @@
 									</tr>
 								</thead>
 								<tbody>
-									<?php $i = 1; ?>
+									<?php 
+										$i = 1;
+										$total_denda = 0;
+									 ?>
 									<?php foreach ($transaksi as $dt): ?>
+										<?php $total_denda += $dt['denda']; ?>
 										<tr>
 											<td class="align-middle"><?= $i++; ?></td>
 											<td class="align-middle"><?= $dt['nama_anggota']; ?></td>
@@ -98,6 +102,12 @@
 										</tr>
 									<?php endforeach ?>
 								</tbody>
+								<tfoot>
+									<tr>
+										<th colspan="7">Total Denda:</th>
+										<th>Rp. <?= number_format($total_denda); ?></th>
+									</tr>
+								</tfoot>
 							</table>
 						</div>
 					<?php endif ?>

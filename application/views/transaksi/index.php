@@ -46,7 +46,7 @@
 										<td class="align-middle">Rp. <?= number_format($dt['denda']); ?></td>
 										<td class="align-middle text-center">
 											<?php if ($dt['status'] == 'dipinjam'): ?>
-												<a href="<?= base_url('transaksi/editTransaksi/' . $dt['id_transaksi']); ?>" class="btn btn-sm btn-success m-1"><i class="fas fa-fw fa-undo"></i></a>
+												<a href="<?= base_url('transaksi/editTransaksi/' . $dt['id_transaksi']); ?>" class="btn btn-sm btn-primary m-1"><i class="fas fa-fw fa-undo"></i></a>
 											<?php endif ?>
 											<a href="<?= base_url('transaksi/removeTransaksi/' . $dt['id_transaksi']); ?>" class="btn btn-sm btn-danger m-1 btn-delete" data-nama="Pinjaman <?= $dt['nama_anggota']; ?>"><i class="fas fa-fw fa-fw fa-trash"></i></a>
 										</td>

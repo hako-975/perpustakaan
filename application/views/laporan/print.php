@@ -50,19 +50,23 @@
     <table>
         <thead>
             <tr>
-                <th>No.</th>
+                <th style="width: 5px;">No.</th>
                 <th>Nama Anggota</th>
                 <th>Judul Buku</th>
-                <th>Tanggal Pinjam</th>
-                <th>Tanggal Wajib Kembali</th>
-                <th>Tanggal Kembali</th>
+                <th style="width: 65px;">Tanggal Pinjam</th>
+                <th style="width: 65px;">Tanggal Wajib Kembali</th>
+                <th style="width: 65px;">Tanggal Kembali</th>
                 <th>Status</th>
-                <th>Denda</th>
+                <th style="width: 80px;">Denda</th>
             </tr>
         </thead>
         <tbody>
-            <?php $i = 1; ?>
+            <?php 
+                $i = 1;
+                $total_denda = 0;
+             ?>
             <?php foreach ($transaksi as $dt): ?>
+                <?php $total_denda += $dt['denda']; ?>
                 <tr>
                     <td><?= $i++; ?>.</td>
                     <td><?= $dt['nama_anggota']; ?></td>
@@ -79,6 +83,12 @@
                 </tr>
             <?php endforeach ?>
         </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="7">Total Denda:</th>
+                <th>Rp. <?= number_format($total_denda); ?></th>
+            </tr>
+        </tfoot>
     </table>
 
     <script>
